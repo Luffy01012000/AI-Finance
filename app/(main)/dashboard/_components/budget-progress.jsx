@@ -103,9 +103,9 @@ export function BudgetProgress({ initialBudget, currentExpenses }) {
               <>
                 <CardDescription>
                   {initialBudget
-                    ? `&#8377;${currentExpenses.toFixed(
+                    ? `${(<IndianRupee className="w-4 h-4"/>)}${currentExpenses.toFixed(
                         2
-                      )} of &#8377;${initialBudget.amount.toFixed(2)} spent`
+                      )} of ${(<IndianRupee className="w-4 h-4"/>)}${initialBudget.amount.toFixed(2)} spent`
                     : "No budget set"}
                 </CardDescription>
                 <Button
