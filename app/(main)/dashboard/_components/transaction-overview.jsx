@@ -168,7 +168,7 @@ export function DashboardOverview({ accounts, transactions }) {
                     outerRadius={80}
                     fill="#8884d8"
                     dataKey="value"
-                    label={({ name, value }) => `${name}: ${(<IndianRupee className="w-4 h-4"/>)}${value.toFixed(2)}`}
+                    label={({ name, value }) => `${name}: ₹ ${value.toFixed(2)}`}
                   >
                     {pieChartData.map((entry, index) => (
                       <Cell
@@ -178,7 +178,7 @@ export function DashboardOverview({ accounts, transactions }) {
                     ))}
                   </Pie>
                   <Tooltip
-                    formatter={(value) => `${(<IndianRupee className="w-4 h-4"/>)}${value.toFixed(2)}`}
+                    formatter={(value) => `₹ ${value.toFixed(2)}`}
                     contentStyle={{
                       backgroundColor: "hsl(var(--popover))",
                       border: "1px solid hsl(var(--border))",

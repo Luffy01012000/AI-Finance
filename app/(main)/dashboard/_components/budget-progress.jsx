@@ -16,7 +16,6 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { updateBudget } from "@/actions/budget";
-import { IndianRupee } from 'lucide-react';
 
 
 export function BudgetProgress({ initialBudget, currentExpenses }) {
@@ -105,9 +104,9 @@ export function BudgetProgress({ initialBudget, currentExpenses }) {
               <>
                 <CardDescription>
                   {initialBudget
-                    ? `${(<IndianRupee className="w-4 h-4"/>)}${currentExpenses.toFixed(
+                    ? `₹ ${currentExpenses.toFixed(
                         2
-                      )} of ${(<IndianRupee className="w-4 h-4"/>)}${initialBudget.amount.toFixed(2)} spent`
+                      )} of ₹ ${initialBudget.amount.toFixed(2)} spent`
                     : "No budget set"}
                 </CardDescription>
                 <Button

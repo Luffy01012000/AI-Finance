@@ -14,7 +14,7 @@ export const statsData = [
     label: "Active Users",
   },
   {
-    value: "&#8377;2B+",
+    value: "₹;2B+",
     label: "Transactions Tracked",
   },
   {
