@@ -31,7 +31,7 @@ export async function getUserAccounts() {
 
   try {
     const accounts = await db.account.findMany({
-      where: { userId: user.id },
+      where: { userId: user.id, isDeleted: false, },
       orderBy: { createdAt: "desc" },
       include: {
         _count: {
@@ -154,3 +154,4 @@ export async function getDashboardData() {
 
   return transactions.map(serializeTransaction);
 }
+

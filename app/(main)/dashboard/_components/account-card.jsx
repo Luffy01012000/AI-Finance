@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, ArrowDownRight, CreditCard } from "lucide-react";
+import { ArrowUpRight, ArrowDownRight, CreditCard, Trash2 } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Badge } from "@/components/ui/badge";
 import { useEffect } from "react";
@@ -13,8 +13,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
-import { updateDefaultAccount } from "@/actions/account";
+import { deleteAccount, updateDefaultAccount } from "@/actions/account";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 
 export function AccountCard({ account }) {
   const { name, type, balance, id, isDefault } = account;
@@ -36,6 +37,26 @@ export function AccountCard({ account }) {
 
     await updateDefaultFn(id);
   };
+  const {
+    loading: deleteAccountLoading,
+    fn: deleteAccountFn,
+    data: deletedAccountData,
+    error: deleteAccountError,
+  } = useFetch(deleteAccount); 
+  const handleDelete = async (id) => {
+    await deleteAccountFn(id);
+  }
+  useEffect(() => {
+    if (deletedAccountData?.success) {
+      toast.success("Account seleted  successfully");
+    }
+  }, [deletedAccountData]);
+
+  useEffect(() => {
+    if (deleteAccountError) {
+      toast.error(deleteAccountError.message || "Failed to update delete account");
+    }
+  }, [deleteAccountError]);
 
   useEffect(() => {
     if (updatedAccount?.success) {
@@ -51,17 +72,23 @@ export function AccountCard({ account }) {
 
   return (
     <Card className="hover:shadow-md transition-shadow group relative">
-      <Link href={`/account/${id}`}>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium capitalize">
+         <Link href={`/account/${id}`}> <CardTitle className="text-sm font-medium capitalize">
             {name}
           </CardTitle>
+          </Link>
+          <div className="flex items-center space-x-3">
           <Switch
             checked={isDefault}
             onClick={handleDefaultChange}
             disabled={updateDefaultLoading}
           />
+         {deleteAccountLoading? "Deleting...":(<Button variant={"ghost"} onClick={() => handleDelete(id)} ><Trash2 className="text-red-500" />
+          </Button>)} 
+          
+          </div>
         </CardHeader>
+        <Link href={`/account/${id}`}>
         <CardContent>
           <div className="text-2xl font-bold">
             ₹{parseFloat(balance).toFixed(2)}
