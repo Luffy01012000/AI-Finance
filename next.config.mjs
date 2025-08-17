@@ -8,12 +8,21 @@ const nextConfig = {
       },
     ],
   },
-
   experimental: {
     serverActions: {
       bodySizeLimit: "5mb",
     },
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/dashboard',
+        permanent: false, // or true for a 308 (permanent) redirect
+      },
+    ];
+  },
 };
+
 
 export default nextConfig;

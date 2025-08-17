@@ -2,7 +2,7 @@
 
 // import { Resend } from "resend";
 
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
