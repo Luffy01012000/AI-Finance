@@ -27,7 +27,8 @@ export async function sendEmail({ to, subject, react }) {
     from: "Finance App <onboarding@resend.dev>",
     to,
     subject,
-    text: react,
+    // text: react,
+    html: react,
   },
   // (err, info) => {
   //   if (err) {
